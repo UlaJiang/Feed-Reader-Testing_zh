@@ -28,7 +28,7 @@ $(function() {
         it('are all have links and are not null', function() {
             for (var i = 0; i < allFeeds.length; i++) {
                 expect(allFeeds[i].url).toBeDefined();
-                expect(allFeeds[i].url.length).not.toBe(0);
+                expect(allFeeds[i].url).not.toBeNull();
             }
         });
 
@@ -38,18 +38,20 @@ $(function() {
         it('are all have names and are not null', function() {
             for (var i = 0; i < allFeeds.length; i++) {
                 expect(allFeeds[i].name).toBeDefined();
-                expect(allFeeds[i].name.length).not.toBe(0);
+                expect(allFeeds[i].name).not.toBeNull();
             }
         });
     });
 
+
+    /* TODO: 写一个叫做 "The menu" 的测试用例 */
     describe('The menu', function() {
         /* TODO:
          * 写一个测试用例保证菜单元素默认是隐藏的。你需要分析 html 和 css
          * 来搞清楚我们是怎么实现隐藏/展示菜单元素的。
          */
          it('is hidden defualtly', function() {
-            expect($('body').hasClass('menu-hidden')).toBe(true);
+            expect($('body').attr('class')).toBe('menu-hidden');
          });
 
          /* TODO:
@@ -58,14 +60,14 @@ $(function() {
           * 再次点击的时候是否隐藏。
           */
           it('toggle class hiden and show when click', function() {
-            $trigger = $('a.menu-icon-link');
-            $icon = $('body.menu-hidden');
-
+            $trigger = $('.menu-icon-link');
+            $icon = $('.menu-hidden');
+        //click first time toggleClass
             $trigger.trigger('click');
-            expect($('body').hasClass('menu-hidden')).toBe(false);
-
+            expect(($icon).attr('class')).not.toBe('menu-hidden');
+        //click second time
             $trigger.trigger('click');
-            expect($('body').hasClass('menu-hidden')).toBe(true);
+            expect(($icon).attr('class')).toBe('menu-hidden');
         });
     });
 
@@ -79,20 +81,27 @@ $(function() {
          * 记住 loadFeed() 函数是异步的所以这个而是应该使用 Jasmine 的 beforeEach
          * 和异步的 done() 函数。
          */
-         
-        // beforeEach()函数在每一个spec调用前调用，先进行初始化操作。
         beforeEach(function(done) {
-            loadFeed(0, done);
+            //originalTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL;
+            //jasmine.DEFAULT_TIMEOUT_INTERVAL = 50000;
+            loadFeed(0, function() {
+                done();
+            });
         });
 
+        // afterEach(function() {
+        //     jasmine.DEFAULT_TIMEOUT_INTERVAL = originalTimeout;
+        // });
 
-        it('with loadFeed should work properly', function() {
+        it('with loadFeed should work properly', function(done) {
             expect($('.feed').length).not.toBe(0);
             expect($('.entry').length).not.toBe(0);
+            done();
         });
     });
+    
 
-       /* TODO: 写一个叫做 "New Feed Selection" 的测试用例 */
+    /* TODO: 写一个叫做 "New Feed Selection" 的测试用例 */
     describe('New Feed Selection', function() {
         /* TODO:
          * 写一个测试保证当用 loadFeed 函数加载一个新源的时候内容会真的改变。
@@ -103,7 +112,7 @@ $(function() {
         beforeEach(function(done) {
             
             originalTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL;
-            jasmine.DEFAULT_TIMEOUT_INTERVAL = 200000;
+            jasmine.DEFAULT_TIMEOUT_INTERVAL = 100000;
 
             loadFeed(0, function() {
                 text = $('.header-title').html();
@@ -114,10 +123,11 @@ $(function() {
             });
         });
 
-        it('load correctly when click a link', function() {
+        it('load correctly when click a link', function(done) {
             var text2 = $('.header-title').html();
             console.log(text2);          
             expect(text2).not.toBe(text);
+            done();
         });
 
         afterEach(function() {
