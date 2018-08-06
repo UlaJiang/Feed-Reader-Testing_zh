@@ -1,3 +1,6 @@
+### It is a online course from Udacity. 
+### Practise writing JS testing code based on Jasmine.
+
 
 前端纳米学位订阅阅读器测试
 author：ulajiang
