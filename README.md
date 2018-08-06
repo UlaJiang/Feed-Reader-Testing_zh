@@ -2,39 +2,29 @@
 ### Practise writing JS testing code based on Jasmine.
 
 
-前端纳米学位订阅阅读器测试
+Front-end nano-degree subscription reader test
 author：ulajiang
 
-========================== 组成部分 =========================
+========================== Component =========================
 
-jasmine/spec/feedreader.js是测试文件，用于测试网页的主功能是否正常工作
+Jasmine/spec/feedreader.js is a test file that tests whether the main function of the web page is working properly
 
-========================== 具体功能测试 ======================
+========================== Specific functional test ======================
+1. Write a test that loops through each feedback in the allFeeds object and ensures that it has a defined non-null URL.
+2. Write a test that loops through each feedback in the allFeeds object and ensures that it has a defined non-empty name.
+3. Write a new test suite and name it "The menu".
+4. Write tests to ensure that menu elements are hidden by default. It is also required to analyze HTML and CSS to determine how the hidden/displayed menu elements are implemented.
+5. Write tests to make sure the menu changes its visibility when the menu is clicked. The test should have two expectations: whether the menu is displayed when clicked, and whether the menu is hidden when clicked again.
+6. Write a test suite and name "Initial Entries".
+7. Write a test to ensure that at least one .entry element exists in the .feed container after the loadFeed function is called and executed.
+8. Write a test suite and name "New Feed Selection."
+9. Write tests to ensure that whenever the loadFeed function loads a new feedback, the content changes accordingly.
 
-1. 编写测试对 allFeeds 对象中的每条反馈执行循环操作， 并确保其具有定义的非空 URL。
+=========================== Start the test ===========================
 
-2. 编写测试对 allFeeds 对象中的每条反馈执行循环操作， 并确保其具有定义的非空名称。
+Double-click the index.html file, the corresponding web page will appear, and the bottom of the page is the running result of the test script.
 
-3. 编写一个新测试套件，命名 "The menu"。
+=========================== Project Resources ===========================
 
-4. 编写测试以确保菜单元素在默认情况下处于隐藏状态。并要求分析HTML和CSS，以确定菜单元素的隐藏/显示是如何实现的。
-
-5. 编写测试，确保当点击菜单时，菜单改变其可见性。测试应有两项期望：当点击时，菜单是否显示，当再次点击时，菜单是否隐藏。
-
-6. 编写测试套件并命名 "Initial Entries"。
-
-7. 编写测试，确保在调用并执行 loadFeed 函数后， 在 .feed 容器中至少存在一个 .entry 元素。
-
-8. 编写测试套件并命名 "New Feed Selection"。
-
-9. 编写测试，确保每当loadFeed函数加载一条新反馈后， 内容会相应更改。
-
-=========================== 开始测试 ===========================
-
-双击index.html文件，会出现相应网页，网页最下方是测试脚本的运行结果
-
-
-=========================== 项目资源 ===========================
-
-feedreader.js由我实现，其余文件由优达学院提供
+Feedreader.js is implemented by me, and the rest of the files are provided by Uda College.
 
